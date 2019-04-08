@@ -29,11 +29,11 @@ public class Player {
         return items;
     }
 
-    public Level.Room getCurrentNode(){
+    public Level.Room getCurrentRoom(){
         return currentRoom;
     }
 
-    public void setCurrentNode(Level.Room newRoom){
+    public void setCurrentRoom(Level.Room newRoom){
         currentRoom = newRoom;
     }
 

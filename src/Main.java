@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -16,16 +17,19 @@ public class Main {
         g.addUndirectedEdge("hall", "closet");
 
         Player p = new Player("Ben", "1 unit of doub");
-        p.setCurrentNode(g.getRoom("hall"));
-        Level.Room current = p.getCurrentNode();
+        p.setCurrentRoom(g.getRoom("hall"));
+        Level.Room current = p.getCurrentRoom();
 
         Item ball = new Item("ball", "doubie's ball");
         g.getRoom("closet").addItem(ball);
 
-        Chicken c = new Chicken(g.getRoom("dungeon"));
-        Wumpus w = new Wumpus(g.getRoom("ladder"), p);
+        ArrayList<Creature> creatures = new ArrayList<>();
 
+        Creature c = new Chicken(g.getRoom("dungeon"));
+        Creature w = new Wumpus(g.getRoom("ladder"), p);
 
+        creatures.add(c);
+        creatures.add(w);
 
 
         String response = "";
@@ -40,7 +44,7 @@ public class Main {
                 String room = response.substring(3);
                 if (current.getNeighbor(room) != null){
                     current = current.getNeighbor(room);
-                    p.setCurrentNode(current);
+                    p.setCurrentRoom(current);
                 } else {
                     System.out.println("You can't go to " + response + ". Try typing 'look' to see where you can go.");
                 }
@@ -71,12 +75,12 @@ public class Main {
                 System.out.println("You can type 'go <room name>', 'look', 'add room <room name>', 'take <item name>', 'drop <item name>', or \"quit\"");
 
             }
-            System.out.println("The chicken is in the " + c.getCurrentRoom().getName());
-            if (!c.getCurrentRoom().getNeighbors().isEmpty()) {
-                c.randomMove();
+
+            for (Creature z: creatures) {
+                z.act();
             }
-            w.runFromPlayer();
             System.out.println("The wumpus is in the " + w.getCurrentRoom().getName());
+            System.out.println("The chicken is in the " + c.getCurrentRoom().getName());
 
 
 

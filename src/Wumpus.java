@@ -7,22 +7,33 @@ public class Wumpus extends Creature {
         trackPlayer(p);
     }
 
-    public void runFromPlayer(){
-        ArrayList<Level.Room> roomsToRunIn = new ArrayList<>();
+    public void act(){
+        ArrayList<Level.Room> availableRooms = new ArrayList<>();
+
 
         if (!getCurrentRoom().getNeighbors().isEmpty()) {
-            if (getP().getCurrentNode().getNeighbors().containsValue(getCurrentRoom())){         //if wumpus is next door to player
-                for (Level.Room r : getCurrentRoom().getNeighbors().values()) {                 // create a list of room to run in, not including player's room
-
-
-                    if (!r.equals(getP().getCurrentNode())) {
-                        roomsToRunIn.add(r);
-                    }
-                }
+            if (playerIsNextDoor()){         //if wumpus is next door to player
+                availableRooms = findAvailableRooms();
             }
         }
-        if (!roomsToRunIn.isEmpty()){
-            setCurrentRoom(roomsToRunIn.get((int)(Math.random()*roomsToRunIn.size())));
+        if (!availableRooms.isEmpty()){
+            setCurrentRoom(this.getRandomAdjacentRoom());
         }
+    }
+
+    private ArrayList<Level.Room> findAvailableRooms() {
+        ArrayList<Level.Room> roomsToRunIn = new ArrayList<>();
+
+        for (Level.Room r : getCurrentRoom().getNeighbors().values()) {                 // create a list of room to run in, not including player's room
+
+            if (!r.equals(getP().getCurrentRoom())) {
+                roomsToRunIn.add(r);
+            }
+        }
+        return roomsToRunIn;
+    }
+
+    private boolean playerIsNextDoor() {
+       return getP().getCurrentRoom().getNeighbors().containsValue(getCurrentRoom());
     }
 }

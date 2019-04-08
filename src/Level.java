@@ -134,7 +134,11 @@ public class Level {
                 n.add(r);
             }
 
-            return n.get((int)(Math.random()*n.size()));
+            if (!n.isEmpty()) {
+                return n.get((int) (Math.random() * n.size()));
+            }
+
+            return null;
         }
     }
 }

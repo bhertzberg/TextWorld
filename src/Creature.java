@@ -15,6 +15,8 @@ public abstract class Creature {
         this.p = p;
     }
 
+    protected abstract void act();
+
     protected Level.Room getRandomAdjacentRoom(HashMap<String, Level.Room> map){
         ArrayList<Level.Room> rooms = new ArrayList<Level.Room>(map.values());
         int randomRoomIndex = (int)(rooms.size()*Math.random());

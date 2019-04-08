@@ -8,8 +8,11 @@ public class Chicken extends Creature {
     }
 
 
-    public void randomMove(){
+    public void act() {
+
         Level.Room newRoom = getCurrentRoom().getRandomNeigbor();
-        moveToRoom(newRoom);
+        if (newRoom != null) {
+            moveToRoom(newRoom);
+        }
     }
 }
