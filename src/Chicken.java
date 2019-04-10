@@ -12,7 +12,7 @@ public class Chicken extends Creature {
 
         Level.Room newRoom = getCurrentRoom().getRandomNeigbor();
         if (newRoom != null) {
-            moveToRoom(newRoom);
+            setCurrentRoom(newRoom);
         }
     }
 }
