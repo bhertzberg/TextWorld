@@ -47,6 +47,7 @@ public class Main {
                 if (current.getNeighbor(room) != null){
                     current = current.getNeighbor(room);
                     p.setCurrentRoom(current);
+                    makeCreaturesAct(creatures);
                 } else {
                     System.out.println("You can't go to " + response + ". Try typing 'look' to see where you can go.");
                 }
@@ -54,6 +55,7 @@ public class Main {
                 System.out.println("You are in the " + current.getDescription());
                 System.out.println("This room contains: ");
                 current.displayItems();
+                displayCreatures(creatures);
                 System.out.println("You can go to the " + current.getNeighborNames());
             } else if (response.contains("add room")){
                 String newRoom = response.substring(9);
@@ -78,12 +80,19 @@ public class Main {
 
             }
 
-            for (Creature z: creatures) {
-                z.act();
-                System.out.println("The " + z.getName() + " is in the " + z.getCurrentRoom().getName());
-
-            }
-
         }while (!response.equals("quit"));
+    }
+
+    private static void makeCreaturesAct(ArrayList<Creature> creatures) {
+        for (Creature z: creatures) {
+            z.act();
+            System.out.println("The " + z.getName() + " is in the " + z.getCurrentRoom().getName());
+        }
+    }
+
+    private static void displayCreatures(ArrayList<Creature> creatures){
+        for (Creature z: creatures) {
+            System.out.println("The " + z.getName() + " is in the " + z.getCurrentRoom().getName());
+        }
     }
 }

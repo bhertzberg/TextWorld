@@ -112,7 +112,7 @@ public class Level {
         public String getNeighborNames() {
             String allNeighbors = "";
             for (String neighborName: neighbors.keySet()) {
-                allNeighbors += neighborName + ", ";
+                allNeighbors += neighborName + " ";
             }
             return allNeighbors;
         }
