@@ -15,4 +15,9 @@ public class Chicken extends Creature {
             setCurrentRoom(newRoom);
         }
     }
+
+    @Override
+    public String getName() {
+        return "chicken";
+    }
 }

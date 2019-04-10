@@ -12,7 +12,7 @@ public class Popstar extends Creature {
         Level.Room nextRoom = null;
 
 
-        if (!getCurrentRoom().getNeighbors().isEmpty()) {
+        if (!getCurrentRoom().getNeighbors().isEmpty() && !getCurrentRoom().equals(getP().getCurrentRoom())) {
             if (playerIsNearby()) {         //if popstar is next door or 2 doors away from player
                 nextRoom = chasePlayer();
             }
@@ -32,7 +32,7 @@ public class Popstar extends Creature {
             } else {
                 for (Level.Room r2 : r.getNeighbors().values()) {
                     if (r2.equals(getP().getCurrentRoom())) {
-                        return r2;
+                        return r;
                     }
                 }
             }
@@ -59,6 +59,10 @@ public class Popstar extends Creature {
             }
         }
         return false;
+    }
+
+    public String getName(){
+        return "popstar";
     }
 }
 

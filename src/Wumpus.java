@@ -22,6 +22,11 @@ public class Wumpus extends Creature {
         }
     }
 
+    @Override
+    public String getName() {
+        return "wumpus";
+    }
+
     private HashMap<String, Level.Room> findAvailableRooms() {
         HashMap<String, Level.Room> roomsToRunIn = new HashMap<>();
 

@@ -13,9 +13,12 @@ public abstract class Creature {
 
     protected abstract void act();
 
+    protected abstract String getName();
+
     protected void trackPlayer(Player p ){
         this.p = p;
     }
+
 
     protected Level.Room getRandomAdjacentRoom(HashMap<String, Level.Room> map){
         ArrayList<Level.Room> rooms = new ArrayList<Level.Room>(map.values());

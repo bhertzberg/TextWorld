@@ -9,7 +9,7 @@ public class Main {
         g.addRoom("hall", "hall of doub");
         g.addRoom("closet", "closet of doob");
         g.addRoom("dungeon", "doubie dungeon");
-        g.addRoom("ladder", "rickety laddoubie");
+        g.addRoom("ladder", "rickety ladder");
 
         g.addDirectedEdge("hall", "dungeon");
         g.addDirectedEdge("dungeon", "ladder");
@@ -27,9 +27,11 @@ public class Main {
 
         Creature c = new Chicken(g.getRoom("dungeon"));
         Creature w = new Wumpus(g.getRoom("ladder"), p);
+        Creature pop = new Popstar(g.getRoom("dungeon"), p);
 
         creatures.add(c);
         creatures.add(w);
+        creatures.add(pop);
 
 
         String response = "";
@@ -78,11 +80,9 @@ public class Main {
 
             for (Creature z: creatures) {
                 z.act();
+                System.out.println("The " + z.getName() + " is in the " + z.getCurrentRoom().getName());
+
             }
-            System.out.println("The wumpus is in the " + w.getCurrentRoom().getName());
-            System.out.println("The chicken is in the " + c.getCurrentRoom().getName());
-
-
 
         }while (!response.equals("quit"));
     }
