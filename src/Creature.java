@@ -52,24 +52,5 @@ public abstract class Creature {
     }
 
 
-    protected boolean playerIsNearby() {
-        if (playerOneStepAway() || playerTwoStepsAway()){
-            return true;
-        }
-        return false;
-    }
 
-    protected boolean playerOneStepAway() {
-        return getCurrentRoom().getNeighbors().containsValue(getP().getCurrentRoom());
-    }
-
-    protected boolean playerTwoStepsAway(){
-        HashMap<String, Level.Room> allNeighbors = getCurrentRoom().getNeighbors();
-        for (Level.Room r: allNeighbors.values()) {
-            if (r.getNeighbors().containsValue(getP().getCurrentRoom())){
-                return true;
-            }
-        }
-        return false;
-    }
 }

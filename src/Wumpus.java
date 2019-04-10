@@ -39,4 +39,25 @@ public class Wumpus extends Creature {
         return roomsToRunIn;
     }
 
+    private boolean playerIsNearby() {
+        if (playerOneStepAway() || playerTwoStepsAway()){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean playerOneStepAway() {
+        return getP().getCurrentRoom().getNeighbors().containsValue(getCurrentRoom());
+    }
+
+    private boolean playerTwoStepsAway(){
+        HashMap<String, Level.Room> allNeighbors = getP().getCurrentRoom().getNeighbors();
+        for (Level.Room r: allNeighbors.values()) {
+            if (r.getNeighbors().containsValue(getCurrentRoom())){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
