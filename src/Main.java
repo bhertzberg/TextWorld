@@ -17,6 +17,7 @@ public class Main {
         g.addUndirectedEdge("hall", "closet");
 
         Player p = new Player("Ben", "1 unit of doub");
+        g.addPlayer(p);
         p.setCurrentRoom(g.getRoom("hall"));
         Level.Room current = p.getCurrentRoom();
 

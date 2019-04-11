@@ -8,11 +8,19 @@ public class TakeCommand implements Command{
 
     @Override
     public void init(String userString) {
+        this.itemName = getLastWordIn(userString);
+    }
 
+    private String getLastWordIn(String userString) {
+        String[] words = userString.split(" ");
+        return words[words.length-1];
     }
 
     @Override
     public boolean execute() {
-        return false;
+        Player p = level.getPlayer();
+        boolean success = p.containsItem( itemName);
+        p.removeItem(itemName);
+        return success;
     }
 }
