@@ -12,7 +12,7 @@ public class Wumpus extends Creature {
         HashMap<String, Level.Room> availableRooms = new HashMap<>();
 
 
-        if (!getCurrentRoom().getNeighbors().isEmpty()) {
+        if (!getCurrentRoom().getNeighbors().isEmpty() && !getCurrentRoom().equals(getP().getCurrentRoom())) {
             if (playerIsNearby()){         //if wumpus is next door or 2 doors away from player
                 availableRooms = findAvailableRooms();
             }
@@ -32,7 +32,7 @@ public class Wumpus extends Creature {
 
         for (Level.Room r : getCurrentRoom().getNeighbors().values()) {
 
-            if (!r.equals(getP().getCurrentRoom()) && !r.getNeighbors().containsValue(getP().getCurrentRoom())) {           // create a list of room to run in, not including player's room or rooms next door to player
+            if (!r.equals(getP().getCurrentRoom()) && !getP().getCurrentRoom().getNeighbors().containsValue(r)) {           // create a list of room to run in, not including player's room or rooms next door to player
                 roomsToRunIn.put(r.getName(), r);
             }
         }
