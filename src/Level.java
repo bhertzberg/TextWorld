@@ -3,6 +3,7 @@ import java.util.HashMap;
 
 public class Level {
     private HashMap<String, Room> rooms;
+    private Player p;
 
     public Level() {
         rooms = new HashMap<String, Room>();
@@ -11,6 +12,14 @@ public class Level {
     public void addRoom(String name, String description) {
         Room n = new Room(name, description);
         rooms.put(name, n);
+    }
+
+    public void addPlayer(Player p){
+        this.p = p;
+    }
+
+    public Player getPlayer(){
+        return this.p;
     }
 
     public void addDirectedEdge(String name1, String name2) {
@@ -73,16 +82,6 @@ public class Level {
             }
             return null;
         }
-
-//        public void addChicken(Chicken chicken){
-//            chickens.add(chicken);
-//        }
-//
-//        public void removeChicken(){
-//           if (!chickens.isEmpty()){
-//               chickens.remove(0);
-//           }
-//        }
 
 
         public void displayItems(){
